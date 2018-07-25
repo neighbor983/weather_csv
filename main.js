@@ -1,5 +1,6 @@
 const axios = require("axios");
 const config = require('./config');
+const dateUtils = require('./dateUtils.js');
 const fs = require('fs');
 const Json2csvParser = require('json2csv').Parser;
 
@@ -52,7 +53,6 @@ const fields = [
   "apparentTemperatureMax",
   "apparentTemperatureMaxTime"
 ];
-
 const opts = { fields, header: false };
 
 fs.writeFile(fileName, fields + NEW_LINE, 'utf8', function(err) {
@@ -72,8 +72,8 @@ const parser = new Json2csvParser(opts);
 let timeCounter = startDate;
 
 do {
-  timeCounter = addDays(timeCounter, 1);
-  let timeString = convertTimeStamp(timeCounter);
+  timeCounter = dateUtils.addDays(timeCounter, 1);
+  let timeString = dateUtils.convertTimeStamp(timeCounter);
 
   axios.get(BASE_URL + DARKSKY_API_KEY + '/' + latitude +
       ',' + longitude + ',' + timeString +
@@ -84,6 +84,7 @@ do {
 }
 while (timeCounter <= endDate);
 
+/*
 function addDays(beginDate, numberOfDays) {
   let resultDate = new Date(
     beginDate.getFullYear(),
@@ -123,7 +124,7 @@ function convertTimeStamp(dateTimeStamp) {
 
   return timeStamp;
 }
-
+*/
 function addDailyWeatherRecord(data, parser, NEW_LINE){
   let locationInformation = data;
   let dailyWeather = locationInformation.daily.data[0];
