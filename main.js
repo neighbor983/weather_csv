@@ -4,8 +4,8 @@ const dateUtils = require('./dateUtils.js');
 const fs = require('fs');
 const Json2csvParser = require('json2csv').Parser;
 
-let startDateString = '2018-07-22';
-let endDateString = '2018-07-23';
+let startDateString = '2018-05-20';
+let endDateString = '2018-05-22';
 
 const NEW_LINE = "\r\n";
 const startDate = new Date(startDateString);
@@ -84,50 +84,11 @@ do {
 }
 while (timeCounter <= endDate);
 
-/*
-function addDays(beginDate, numberOfDays) {
-  let resultDate = new Date(
-    beginDate.getFullYear(),
-    beginDate.getMonth(),
-    beginDate.getDate() + numberOfDays,
-    beginDate.getHours(),
-    beginDate.getMinutes(),
-    beginDate.getSeconds()
-  );
-  return resultDate;
-}
 
-function convertMonth(monthValue) {
-  let newMonth = monthValue + 1;
-  if (newMonth < 10) {
-    return '0' + newMonth;
-  }
-  else {
-    return newMonth;
-  }
-}
-
-function convertDay(dayValue) {
-  if (dayValue < 10) {
-    return '0' + dayValue;
-  }
-  else {
-    return dayValue;
-  }
-}
-
-function convertTimeStamp(dateTimeStamp) {
-  let timeStamp = dateTimeStamp.getFullYear() + '-' +
-    convertMonth(dateTimeStamp.getMonth()) + '-' +
-    convertDay(dateTimeStamp.getDate()) +
-    'T00:00:00';
-
-  return timeStamp;
-}
-*/
 function addDailyWeatherRecord(data, parser, NEW_LINE){
   let locationInformation = data;
   let dailyWeather = locationInformation.daily.data[0];
+  dailyWeather.time = dateUtils.humanReadableDate(dailyWeather.time);
 
   fs.appendFile(fileName, parser.parse(dailyWeather) + NEW_LINE, function(err) {
     if (err) throw err;

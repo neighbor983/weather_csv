@@ -17,6 +17,9 @@ const dateUtils = {
             'T00:00:00';
 
         return timeStamp;
+    },
+    humanReadableDate: function(dateMilseconds){
+        return new Date(dateMilseconds * 1000).toDateString();
     }
 };
 
