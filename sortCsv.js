@@ -2,7 +2,7 @@ const csv = require('csvtojson');
 const Json2csvParser = require('json2csv').Parser;
 
 const NEW_LINE = "\r\n";
-const csvFilePath = './WeatherData2017-04-03to2017-05-01at1532921741246.csv';
+const csvFilePath = './WeatherData2013-11-14to2013-12-29at1532980899212.csv';
 const fs = require('fs');
 
 let fileName = 'test.csv';

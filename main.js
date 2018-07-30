@@ -4,8 +4,8 @@ const dateUtils = require('./dateUtils.js');
 const fs = require('fs');
 const Json2csvParser = require('json2csv').Parser;
 
-let startDateString = '2018-05-20';
-let endDateString = '2018-05-22';
+let startDateString = '2013-04-23';//Apr 23 2013
+let endDateString = '2013-06-21';
 
 const NEW_LINE = "\r\n";
 const startDate = new Date(startDateString);
