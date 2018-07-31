@@ -4,8 +4,8 @@ const dateUtils = require('./dateUtils.js');
 const fs = require('fs');
 const Json2csvParser = require('json2csv').Parser;
 
-let startDateString = '2013-04-23';//Apr 23 2013
-let endDateString = '2013-06-21';
+let startDateString = '2017-11-01';
+let endDateString = '2017-12-01';
 
 const NEW_LINE = "\r\n";
 const startDate = new Date(startDateString);
@@ -83,7 +83,6 @@ do {
     });
 }
 while (timeCounter <= endDate);
-
 
 function addDailyWeatherRecord(data, parser, NEW_LINE){
   let locationInformation = data;
